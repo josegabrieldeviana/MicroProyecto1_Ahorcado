@@ -3,14 +3,15 @@ body{
     background:url(img/fondo.jpg) no-repeat center;
     background-size: cover;
     font-family: "Carter One", Arial, Helvetica, sans-serif;
-
+    min-height: 100vh;
+    /*Esta parte es para que la imágen este completamente en el fondo*/
 }
 
 header{
     background: black;
     padding: 10px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 20%;
 }
 
 h1{
@@ -22,11 +23,17 @@ main{
     width: 80%;
     margin: auto;
     padding: 20px;
-    background: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, 70%);
     display:flex;
     gap:30px;
 
 }
+/*
+Debe tener un ancho
+Un margin y padding
+A este main lo que le vamos a dar es un display tipo flex donde tenemos dos elementos hijos unos al lado del otro
+
+*/
 
 #imagen{
     width: 200px;
