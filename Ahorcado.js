@@ -14,7 +14,7 @@ const palabras = [
 //se definió el boton jugar con el id que se le dio anteriormente al mismo
 //Luego se utilizó el método addEventListener que va a permitir que el navegador considere
 //la interacción click en el botón y se inicie el juego
-const button = Id("jugar");
+const button = id("jugar");
 button.addEventListener('Click', iniciar);
 
 console.log(button);
@@ -34,7 +34,7 @@ console.log(button);
 function iniciar(event){
     button.disabled = true;
     
-    const mostrador = id ('palabra_a_adivinar');
+    const mostrador = id ("palabra_a_adivinar");
     mostrador.innerHTML = ''
 
     const valor_mas_bajo = 0;
@@ -45,7 +45,7 @@ function iniciar(event){
     const cant_rayitas = palabra_de_lista.length;
     
     for (let i = 0; i < cant_rayitas; i ++ ){
-        const span = document.createElement('span');
+        const span = document.createElement("span");
         mostrador.appendChild (span);
 
     }
