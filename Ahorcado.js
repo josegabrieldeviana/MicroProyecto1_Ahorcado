@@ -1,23 +1,32 @@
+//Se creó la variable gloal palabra de la lista para poder utilizarla también al momento de 
+//interactuar con los botones de las letras
+let palabra_de_lista;
+let cant_errores = 0;
+let cant_aciertos = 0;
+
+
+
+
 //Creación de la constante palabras que va a ser una lista de palabras para adivinar
 const palabras = [
-    "hipopótamo",
-    "paralelepípedo",
-    "onomatopeya",
-    "sesquipedal",
-    "esternocleidomastoideo",
-    "electroencefalografista",
-    "quiropráctico",
-    "desoxirribonucleico",
-    "anticonstitucionalmente",
-    "ultramicroscópicamente"
+    'hipopótamo',
+    'paralelepipedo',
+    'onomatopeya',
+    'sesquipedal',
+    'esternocleidomastoideo',
+    'electroencefalografista',
+    'quiropractico',
+    'desoxirribonucleico',
+    'anticonstitucionalmente',
+    'ultramicroscopicamente'
 ];
-//se definió el boton jugar con el id que se le dio anteriormente al mismo
+//Se definió el boton jugar con el id que se le dio anteriormente al mismo
 //Luego se utilizó el método addEventListener que va a permitir que el navegador considere
 //la interacción click en el botón y se inicie el juego
-const button = id("jugar");
-button.addEventListener('Click', iniciar);
+const button = id('jugar');
+button.addEventListener('click', iniciar);
 
-console.log(button);
+console.log(button);    
 
 
 //Luego se va a crear la función que va a permitir que efectivamente nos de alguna palabra de la lista
@@ -32,16 +41,19 @@ console.log(button);
 //también se va a desabilitar el boton que inicia el juego para que no se puede reiniciar el juego a mitad
 //de partida.
 function iniciar(event){
+    console.log('hiciste click');
     button.disabled = true;
-    
-    const mostrador = id ("palabra_a_adivinar");
+    cant_errores = 0;
+    cant_aciertos = 0;
+    const mostrador =  id("palabra_a_adivinar");
     mostrador.innerHTML = ''
 
     const valor_mas_bajo = 0;
     const cant_palabras = palabras.length;
     const valor_al_azar = obtener_random(0, cant_palabras);
     
-    const palabra_de_lista = palabras[valor_al_azar];
+    palabra_de_lista = palabras[valor_al_azar];
+    console.log(palabra_de_lista);
     const cant_rayitas = palabra_de_lista.length;
     
     for (let i = 0; i < cant_rayitas; i ++ ){
@@ -49,6 +61,49 @@ function iniciar(event){
         mostrador.appendChild (span);
 
     }
+
+}
+
+//Constante que va a permitir devolver todos las letras de los botones
+//Se crea un for loop para que recorra desde la primera letra (indice 0) hasta el valor menor
+//que las letras totales de uno en uno
+//una vez los recorra y se quede con uno que reconozca que al hacer click va llamar a la función
+//click de letras 
+const button_letras = document.querySelectorAll("#letras button");
+for (let i = 0; i<button_letras.length; i ++){
+    button_letras[i].addEventListener('click', click_letras);
+}
+
+//se creo la función para poder clickear las letras
+//el event.target va a dar específicamente la letra clickeada
+// y se desabilitará la misma
+//pasar todas las palabras de la lista a que sean minúsculas al igual que las letras
+//el for va a permitir recorrrer letra por letra de la palabra y el if
+// va a ir comparando la letra clickeada con cualquiera de las letras de la palabra gracias al for
+function click_letras(event){
+    const spans = document.querySelectorAll('#palabra_a_adivinar span');
+    const button = event.target;
+    button.disabled = true;
+    const letra = button.innerHTML.toLowerCase();
+    const palabra = palabra_de_lista.toLowerCase();
+    
+    let acerto = false;
+    for(let i = 0; i<palabra.length; i++){
+        if(letra == palabra[i]){
+            spans[i].innerHTML = letra;
+            cant_aciertos++;
+
+            acerto = true;
+        }
+    }
+    if( acerto == false){
+            cant_errores++;
+            const source = `img/ahorcado${cant_errores}.png`
+            const imagen = id('imagen');
+            imagen.src = source;
+    }
+
+    console.log("la letra " + letra + " en la palabra " + palabra + " existe?? " + acerto);
 }
 
 

@@ -40,11 +40,11 @@ A este main lo que le vamos a dar es un display tipo flex donde tenemos dos elem
 
 }
 
-#palabra_adivinadora{
+#palabra_a_adivinar{
     height:3em;
 }
 
-#palabra_adivinadora span{ 
+#palabra_a_adivinar span{ 
     vertical-align: bottom;
     font-size:2em;
 
