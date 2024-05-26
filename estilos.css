@@ -11,7 +11,7 @@ header{
     background: black;
     padding: 10px;
     text-align: center;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
 }
 
 h1{
@@ -20,12 +20,17 @@ h1{
 }
 
 main{
+    
     width: 80%;
     margin: auto;
     padding: 20px;
     background: rgba(255, 255, 255, 70%);
     display:flex;
     gap:30px;
+
+    max-width: 1000px;
+    min-width: 320px;
+    margin:auto;
 
 }
 /*
@@ -37,6 +42,8 @@ A este main lo que le vamos a dar es un display tipo flex donde tenemos dos elem
 
 #imagen{
     width: 200px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 5px rgba(15, 15, 15, .5);
 
 }
 
@@ -69,3 +76,50 @@ A este main lo que le vamos a dar es un display tipo flex donde tenemos dos elem
 
     /*no le va a importar si se termina o no*/
 }
+
+
+
+#victorias{
+    text-align: start;
+}
+
+#turnos{
+    font-weight: 100;
+    text-align: center;
+    position:absolute;
+    right: 19px;
+    left:150px;
+
+}
+
+#turnosCaracter{
+    font-size: 100px;
+}
+
+#victoriasCaracter{
+    font-size: 100px;
+}
+
+@media (min-width: 110px){
+    
+    turnos{
+        font: size 0.02rem;
+    }
+    
+
+    victorias{
+        font: 0.02rem;
+    }
+
+    turnosCaracter{
+        font:0.02rem
+    }
+
+    victoriaCaracter{
+        font:0.02rem;
+    }
+
+    
+}
+
+

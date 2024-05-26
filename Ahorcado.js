@@ -3,6 +3,8 @@
 let palabra_de_lista;
 let cant_errores = 0;
 let cant_aciertos = 0;
+let turnos_jugados=0;
+let victorias1=0;
 
 
 
@@ -24,6 +26,9 @@ const palabras = [
 //Luego se utilizó el método addEventListener que va a permitir que el navegador considere
 //la interacción click en el botón y se inicie el juego
 const button = id('jugar');
+const imagen=id('imagen');
+const turnosJugados=document.querySelector('turnos');
+const victoriaGanada=document.querySelector('victorias');
 button.addEventListener('click', iniciar);
 
 console.log(button);    
@@ -40,13 +45,28 @@ console.log(button);
 //se cierre la etiqueta del html para jugar se reemplace por el espacio en blanco
 //también se va a desabilitar el boton que inicia el juego para que no se puede reiniciar el juego a mitad
 //de partida.
+/*
+En iniciar evento también se encuentra el img source que esta posicionado desde "ahorcado0".
+También hay un loop "for" utilizado para establecer que mientras "i" (refiriendose a la cantidad de letras seleccionadas)
+sea menor que 0, que estas esten disponibles.
+*/ 
 function iniciar(event){
     console.log('hiciste click');
+    imagen.src='img/ahorcado0.jpg'
     button.disabled = true;
     cant_errores = 0;
     cant_aciertos = 0;
+
     const mostrador =  id("palabra_a_adivinar");
+
+
     mostrador.innerHTML = ''
+
+    turnos_jugados++;
+    const numeroTurnos=turnos_jugados;
+    turnos.innerHTML='<span class="turnosCaracter">Turnos jugados:</span>'+numeroTurnos;
+
+    
 
     const valor_mas_bajo = 0;
     const cant_palabras = palabras.length;
@@ -56,6 +76,11 @@ function iniciar(event){
     console.log(palabra_de_lista);
     const cant_rayitas = palabra_de_lista.length;
     
+
+    for (let i = 0; i<button_letras.length; i++){
+        button_letras[i].disabled=false;
+    }
+
     for (let i = 0; i < cant_rayitas; i ++ ){
         const span = document.createElement("span");
         mostrador.appendChild (span);
@@ -83,7 +108,8 @@ for (let i = 0; i<button_letras.length; i ++){
 function click_letras(event){
     const spans = document.querySelectorAll('#palabra_a_adivinar span');
     const button = event.target;
-    button.disabled = true;
+    button.disabled = true; 
+    
     const letra = button.innerHTML.toLowerCase();
     const palabra = palabra_de_lista.toLowerCase();
     
@@ -91,6 +117,10 @@ function click_letras(event){
     for(let i = 0; i<palabra.length; i++){
         if(letra == palabra[i]){
             spans[i].innerHTML = letra;
+            /*
+            Esta sección determina si la letra elegida fue o no parte de la palabra,
+            en función a aquello empieza a contar los aciertos.
+            */
             cant_aciertos++;
 
             acerto = true;
@@ -103,9 +133,36 @@ function click_letras(event){
             imagen.src = source;
     }
 
+/*Esto sirve para contar hasta 7 errores dentro de la selección de letras, y las consecuencias
+de ganar o perder*/
+    if(cant_errores==7){
+        id('resultado').innerHTML="Perdiste, la palabra era"+
+        palabra;
+        game_over();
+        alert("Perdiste, la palabra era "+palabra)
+    }else if(cant_aciertos==palabra.length){
+        id('resultado').innerHTML="Ganaste! Felicitaciones";
+        victorias1++;
+        console.log("Se añade una victoria, victorias hasta ahora:  "+victorias1) //esto es parte de la funcionalidad para contar victorias.
+        victorias1++;
+
+        game_over();
+        const numeroVictorias=victorias1;
+        id('victorias').innerHTML='victorias: '+numeroVictorias/2;
+
+        
+    }
+
     console.log("la letra " + letra + " en la palabra " + palabra + " existe?? " + acerto);
 }
 
+function game_over(){
+    for (let i = 0; i<button_letras.length; i ++){
+        button_letras[i].disabled=true;
+    }
+
+    button.disabled=false;
+}
 
 
 
@@ -125,3 +182,19 @@ function obtener_random(num_min, num_max){
 function id(str){
     return document.getElementById(str);
 }
+
+
+
+/*
+Lista de pendientes para José:
+
+- terminar juego 
+- ⁠hacerlo responsive
+
+- ⁠contar ganadas: Cada vez que ganes entonces se añadirá al puntaje;
+
+
+- ⁠github pages
+- ⁠contador de turnos: cada vez que añadas una letra, se añade un punto
+
+*/
