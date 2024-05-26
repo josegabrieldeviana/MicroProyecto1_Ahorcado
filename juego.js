@@ -1,4 +1,4 @@
-const
+
 /**!
  * Primera enseñanza de js del dia si vengo al código y digo que
  * 
