@@ -11,16 +11,26 @@ let victorias1=0;
 
 //Creación de la constante palabras que va a ser una lista de palabras para adivinar
 const palabras = [
-    'hipopótamo',
-    'paralelepipedo',
-    'onomatopeya',
-    'sesquipedal',
-    'esternocleidomastoideo',
-    'electroencefalografista',
-    'quiropractico',
-    'desoxirribonucleico',
-    'anticonstitucionalmente',
-    'ultramicroscopicamente'
+    "gato",
+    "perro",
+    "casa",
+    "arbol",
+    "flor",
+    "libro",
+    "mesa",
+    "silla",
+    "coche",
+    "puerta",
+    "ventana",
+    "camino",
+    "rio",
+    "mar",
+    "luz",
+    "sol",
+    "luna",
+    "estrella",
+    "campo",
+    "piedra"
 ];
 //Se definió el boton jugar con el id que se le dio anteriormente al mismo
 //Luego se utilizó el método addEventListener que va a permitir que el navegador considere
@@ -136,7 +146,7 @@ function click_letras(event){
 /*Esto sirve para contar hasta 7 errores dentro de la selección de letras, y las consecuencias
 de ganar o perder*/
     if(cant_errores==7){
-        id('resultado').innerHTML="Perdiste, la palabra era"+
+        id('resultado').innerHTML="Perdiste, la palabra era "+
         palabra;
         game_over();
         alert("Perdiste, la palabra era "+palabra)
@@ -184,17 +194,3 @@ function id(str){
 }
 
 
-
-/*
-Lista de pendientes para José:
-
-- terminar juego 
-- ⁠hacerlo responsive
-
-- ⁠contar ganadas: Cada vez que ganes entonces se añadirá al puntaje;
-
-
-- ⁠github pages
-- ⁠contador de turnos: cada vez que añadas una letra, se añade un punto
-
-*/
